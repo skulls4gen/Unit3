@@ -26,7 +26,7 @@ public class PlayerControllerX : MonoBehaviour
 
         // Apply a small upward force at the start of the game
         playerRb.AddForce(Vector3.up * 5, ForceMode.Impulse);
-
+        playerRb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -37,6 +37,11 @@ public class PlayerControllerX : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * floatForce);
         }
+        if (transform.position.y < 13 && Input.GetKey(KeyCode.Space) && !gameOver)
+        {
+            playerRb.AddForce(Vector3.up * floatForce);
+        }
+        fireworksParticle.transform.position = transform.position;
     }
 
     private void OnCollisionEnter(Collision other)
